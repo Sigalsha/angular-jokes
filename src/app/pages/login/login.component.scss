@@ -1,0 +1,25 @@
+.login-card {
+  margin: 2rem auto;
+  width: 40vw;
+  background-color: rgba(63, 81, 181, 0.08);
+}
+
+.login-form {
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.login-btn {
+  background-color: #7878a8; //#4f9bd9 // #4085c5
+  padding: 0.75rem 1.5rem;
+  color: white;
+}

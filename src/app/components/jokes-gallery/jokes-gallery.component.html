@@ -1,0 +1,14 @@
+<mat-grid-list cols="3" rowHeight="2:1" *ngIf="jokes | json">
+  <mat-grid-tile *ngFor="let joke of jokes; let i = index">
+    <ng-container
+      *ngIf="joke.type === 'single'; then singleLine; else doubleLine"
+    ></ng-container>
+    <ng-template #singleLine>
+      <p>{{ joke.joke }}</p>
+    </ng-template>
+    <ng-template #doubleLine>
+      <p>{{ joke.setup }}</p>
+      <p>{{ joke.delivery }}</p>
+    </ng-template>
+  </mat-grid-tile>
+</mat-grid-list>
