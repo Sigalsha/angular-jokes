@@ -1,3 +1,33 @@
+mat-grid-list {
+  margin: 1rem;
+  padding: 1rem 0;
+}
+
 mat-grid-tile {
   background: lightblue;
+}
+
+mat-grid-tile:hover {
+  cursor: pointer;
+}
+
+.joke-tile-wrapper {
+  width: 100%;
+  display: flex;
+  padding: 0 1rem;
+  margin: 0;
+}
+
+.joke-icon {
+  max-width: 3.5vw;
+  max-height: 3.5vh;
+  padding-right: 0.5rem;
+}
+
+.joke-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2em;
+  margin: 0;
 }
