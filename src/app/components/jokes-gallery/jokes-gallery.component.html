@@ -5,7 +5,7 @@
   *ngIf="jokes | json"
 >
   <mat-grid-tile *ngFor="let joke of jokes">
-    <div class="joke-tile-wrapper">
+    <div class="joke-tile-wrapper" (click)="openJokeModal(joke)">
       <img
         class="joke-icon"
         src="../../../assets/laugh-icon.png"

@@ -1,6 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JokeModal } from '../../models/jokeModal.model';
+import { JokesService } from '../../services/api/jokes.service';
+import { Joke } from '../../models/joke.model';
 
 @Component({
   selector: 'app-joke-modal',
@@ -8,7 +10,20 @@ import { JokeModal } from '../../models/jokeModal.model';
   styleUrls: ['./joke-modal.component.scss'],
 })
 export class JokeModalComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: JokeModal) {}
+  @Output() jokeClick = new EventEmitter<Joke>();
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: JokeModal,
+    private dialogRef: MatDialogRef<JokeModalComponent>
+  ) {}
+
+  clickSuggestedJoke(joke: Joke) {
+    this.dialogRef.close(joke);
+  }
+
+  closeModal() {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {}
 }

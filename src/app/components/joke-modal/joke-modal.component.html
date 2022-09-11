@@ -1,20 +1,47 @@
-<div mat-dialog-content>
-  <div>
+<div mat-dialog-content *ngIf="data">
+  <div [id]="data.id">
     <p class="joke-text">
       <!-- <fa-icon [icon]="faFaceLaughBeam"></fa-icon> [id]="joke.id" -->
-      joke or setup
+      {{ data.jokeText }}
     </p>
-    <p>category:</p>
-    <p>type:</p>
-    <p>flags -> if true</p>
+    <p>category: {{ data.category }}</p>
+    <p>type: {{ data.type }}</p>
+    <ng-container *ngIf="data.flags && data.flags.length">
+      <div class="modal-flags">
+        <p>For your attention: this joke is&nbsp;</p>
+        <ng-container
+          *ngIf="data.flags.length <= 1; then singleFlag; else multiFlags"
+        >
+        </ng-container>
+        <ng-template #singleFlag>
+          <p>{{ data.flags[0] }}</p>
+        </ng-template>
+        <ng-template #multiFlags>
+          <ul *ngFor="let flag of data.flags">
+            <li>{{ flag }},&nbsp;</li>
+          </ul>
+        </ng-template>
+      </div>
+    </ng-container>
   </div>
 </div>
 <div mat-dialog-actions>
-  <div>
+  <div
+    class="modal-suggested-wrapper"
+    *ngIf="data.suggestedJokes && data.suggestedJokes.length > 1"
+  >
     <h3 mat-dialog-title>More jokes of this type:</h3>
-    <button mat-button mat-dialog-close>1</button>
-    <button mat-button mat-dialog-close>2</button>
-    <button mat-button mat-dialog-close>3</button>
+    <ng-container *ngFor="let suggested of data.suggestedJokes">
+      <button
+        class="modal-suggested-joke"
+        mat-button
+        mat-dialog-close
+        [id]="suggested.id"
+        (click)="clickSuggestedJoke(suggested)"
+      >
+        {{ suggested.type === "single" ? suggested.joke : suggested.setup }}
+      </button>
+    </ng-container>
   </div>
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close (click)="closeModal()">Close</button>
 </div>

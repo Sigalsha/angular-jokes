@@ -1,0 +1,20 @@
+.modal-flags {
+  display: flex;
+}
+
+.modal-flags li {
+  list-style: none;
+}
+
+.modal-suggested-wrapper {
+  width: 95%;
+  margin: 0 2rem 2.5rem 0;
+}
+
+.modal-suggested-joke {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+  max-width: 100%;
+}

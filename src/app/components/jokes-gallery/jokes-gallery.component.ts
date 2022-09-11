@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Joke } from '../../models/joke.model';
-import { faFaceLaughBeam } from '@fortawesome/free-solid-svg-icons';
-
+import { JokesService } from '../../services/api/jokes.service';
 @Component({
   selector: 'app-jokes-gallery',
   templateUrl: './jokes-gallery.component.html',
@@ -9,9 +8,25 @@ import { faFaceLaughBeam } from '@fortawesome/free-solid-svg-icons';
 })
 export class JokesGalleryComponent implements OnInit {
   @Input() jokes!: Joke[];
-  faFaceLaughBeam = faFaceLaughBeam;
+  @Output() jokeClick = new EventEmitter<Joke>();
 
   constructor() {}
+
+  openJokeModal(joke: Joke) {
+    this.jokeClick.emit(joke);
+    /* this.jokesService.clickedJokeSub.next(joke);
+    this.modal.open(JokeModalComponent, {
+      data: {
+        id: joke.id,
+        jokeText:
+          joke.type === 'single' ? joke.joke : `${joke.setup} ${joke.delivery}`,
+        category: joke.category,
+        type: joke.type,
+        flags: this._isJokeHasFlags(joke.flags),
+        suggestedJokes: this.generateRandomJokes(joke.type),
+      },
+    }); */
+  }
 
   ngOnInit(): void {}
 }

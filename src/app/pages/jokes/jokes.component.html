@@ -1,1 +1,4 @@
-<app-jokes-gallery [jokes]="jokes"></app-jokes-gallery>
+<app-jokes-gallery
+  [jokes]="jokes"
+  (jokeClick)="openJokeModal($event)"
+></app-jokes-gallery>
