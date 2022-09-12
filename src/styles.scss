@@ -33,6 +33,7 @@ $angular-jokes-aman-test-theme: mat.define-light-theme(
 html,
 body {
   height: 100%;
+  background-color: #faeee0;
 }
 body {
   margin: 0;
@@ -41,4 +42,12 @@ body {
   line-height: 1.5;
   letter-spacing: 0.025em;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.custom-modal {
+  mat-dialog-container {
+    background-color: #f9e4c8;
+    min-width: 50vw;
+    max-height: 95vh;
+  }
 }

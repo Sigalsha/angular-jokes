@@ -4,7 +4,7 @@ mat-grid-list {
 }
 
 mat-grid-tile {
-  background: lightblue;
+  background: #dbd0c0;
 }
 
 mat-grid-tile:hover {
@@ -14,6 +14,7 @@ mat-grid-tile:hover {
 .joke-tile-wrapper {
   width: 100%;
   display: flex;
+  align-items: center;
   padding: 0 1rem;
   margin: 0;
 }
@@ -30,4 +31,15 @@ mat-grid-tile:hover {
   text-overflow: ellipsis;
   font-size: 1.2em;
   margin: 0;
+}
+
+@media screen and (max-width: 500px) {
+  mat-grid-list {
+    margin: 0 1rem;
+  }
+
+  .joke-icon {
+    max-width: 7vw;
+    max-height: 3vh;
+  }
 }

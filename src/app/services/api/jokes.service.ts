@@ -17,7 +17,6 @@ export class JokesService {
   fetchJokes(): Observable<any> {
     return this.http.get(this._jokesDataJson).pipe(
       map((jokesData: any) => {
-        console.log(jokesData);
         this.jokesSub.next(jokesData);
         return jokesData;
       }),
@@ -34,17 +33,7 @@ export class JokesService {
     return this.jokesSub.asObservable();
   }
 
-  /*   clickJoke(joke: Joke) {
-    this.clickedJokeSub.next(joke);
-  } */
-
   clearClickedJoke() {
     this.clickedJokeSub.complete();
   }
-
-  /*    generateRandomJokes(jokeType: string) {
-    let randomJokeIndex = Math.floor(Math.random() * this.jokesSub.subscribe((jokes) => {
-
-    }));
-  }  */
 }

@@ -5,18 +5,55 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="login-form">
+    <form class="login-form" [formGroup]="loginForm">
       <mat-form-field appearance="standard">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" />
-        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          name="email"
+        />
+        <mat-error *ngIf="email.errors?.['required']"
+          >You must add your email.</mat-error
+        >
+        <ng-container *ngIf="email.errors as error">
+          <mat-error *ngIf="error?.['email'] || error?.['pattern']"
+            >This is not a valid email, Please add a valid email.</mat-error
+          >
+        </ng-container>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" />
-        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          name="password"
+        />
+        <mat-error *ngIf="password.errors?.['required']"
+          >You must add a password.</mat-error
+        >
       </mat-form-field>
-      <button class="login-btn" type="submit" mat-button color="primary">
+      <ng-container *ngIf="password.errors as error">
+        <div *ngIf="error?.['minlength']">
+          Your password must have minimum
+          {{error?.['minlength'].requiredLength}} chars, but it only has
+          {{error?.['minlength'].actualLength}}.
+        </div>
+        <div *ngIf="error?.['pattern']">
+          Your password must have lower case, upper case and numeric characters.
+        </div>
+      </ng-container>
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-btn"
+        type="submit"
+        [disabled]="!loginForm.valid"
+        (click)="login()"
+      >
         Sign In
       </button>
     </form>

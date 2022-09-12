@@ -1,9 +1,34 @@
+.joke-text {
+  font-size: 1.5em;
+}
+
+.modal-joke-details {
+  padding-bottom: 2rem;
+  font-size: 1.2em;
+}
+
+.modal-joke-details p {
+  padding: 0 0.5rem;
+}
+
 .modal-flags {
   display: flex;
 }
 
 .modal-flags li {
   list-style: none;
+}
+
+.modal-divider {
+  border-top-width: 5px;
+}
+
+.mat-dialog-title {
+  font-size: 1.3em;
+}
+
+.mat-list-item-content {
+  padding: 0;
 }
 
 .modal-suggested-wrapper {

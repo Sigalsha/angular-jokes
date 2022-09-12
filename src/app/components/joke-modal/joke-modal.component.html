@@ -1,11 +1,12 @@
 <div mat-dialog-content *ngIf="data">
   <div [id]="data.id">
-    <p class="joke-text">
-      <!-- <fa-icon [icon]="faFaceLaughBeam"></fa-icon> [id]="joke.id" -->
+    <h2 class="joke-text">
       {{ data.jokeText }}
-    </p>
-    <p>category: {{ data.category }}</p>
-    <p>type: {{ data.type }}</p>
+    </h2>
+    <div class="modal-joke-details">
+      <p>category: {{ data.category }}</p>
+      <p>type: {{ data.type }}</p>
+    </div>
     <ng-container *ngIf="data.flags && data.flags.length">
       <div class="modal-flags">
         <p>For your attention: this joke is&nbsp;</p>
@@ -25,23 +26,25 @@
     </ng-container>
   </div>
 </div>
+<mat-divider class="modal-divider"></mat-divider>
 <div mat-dialog-actions>
   <div
     class="modal-suggested-wrapper"
     *ngIf="data.suggestedJokes && data.suggestedJokes.length > 1"
   >
-    <h3 mat-dialog-title>More jokes of this type:</h3>
-    <ng-container *ngFor="let suggested of data.suggestedJokes">
-      <button
-        class="modal-suggested-joke"
-        mat-button
-        mat-dialog-close
+    <mat-list>
+      <h3 mat-dialog-title>More jokes of this type:</h3>
+      <mat-list-item
         [id]="suggested.id"
-        (click)="clickSuggestedJoke(suggested)"
+        class="modal-suggested-joke"
+        *ngFor="let suggested of data.suggestedJokes"
       >
-        {{ suggested.type === "single" ? suggested.joke : suggested.setup }}
-      </button>
-    </ng-container>
+        <mat-icon mat-list-icon>sentiment_very_satisfied</mat-icon>
+        <div mat-line>
+          {{ suggested.type === "single" ? suggested.joke : suggested.setup }}
+        </div>
+      </mat-list-item>
+    </mat-list>
   </div>
   <button mat-button mat-dialog-close (click)="closeModal()">Close</button>
 </div>

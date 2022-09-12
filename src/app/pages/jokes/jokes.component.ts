@@ -15,7 +15,6 @@ export class JokesComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   jokes!: Joke[];
   isModalOpen = false;
-  //dialogConfig = new MatDialogConfig();
   dialogRef!: any;
   jokeModalSub!: Subscription;
 
@@ -23,23 +22,10 @@ export class JokesComponent implements OnInit, OnDestroy {
 
   openJokeModal(joke: Joke) {
     this._createJokeModal(joke);
-    /*     this.jokeModalSub = this.dialogRef.afterClosed().subscribe((data: any) => {
-      console.log('Dialog output:', data);
-      debugger;
-      if (data && typeof data === 'object' && data.hasOwnProperty('id')) {
-        this._createJokeModal(data);
-        this.jokeModalSub.unsubscribe();
-      } else {
-        this.jokesService.clickedJokeSub.complete();
-        this.jokeModalSub.unsubscribe();
-      }
-    }); */
   }
 
   _createJokeModal(joke: Joke) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.minHeight = '40vh';
-    dialogConfig.minWidth = '40vw';
     dialogConfig.data = {
       id: joke.id,
       jokeText:
@@ -49,6 +35,7 @@ export class JokesComponent implements OnInit, OnDestroy {
       flags: this._isJokeHasFlags(joke.flags),
       suggestedJokes: this.generateRandomJokes(joke.type, joke.id),
     };
+    dialogConfig.panelClass = 'custom-modal';
     this.jokesService.clickedJokeSub.next(joke);
 
     this.modal.open(JokeModalComponent, dialogConfig);
